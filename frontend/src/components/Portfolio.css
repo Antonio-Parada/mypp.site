@@ -1,18 +1,22 @@
 .portfolio-section {
-  padding: 50px 20px;
+  padding: 60px 20px;
   background-color: #f9f9f9;
+  margin: 40px auto;
+  max-width: 1200px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .portfolio-section h2 {
-  font-size: 2.5em;
-  margin-bottom: 40px;
+  font-size: 2.8em;
+  margin-bottom: 50px;
   color: #333;
   text-align: center;
 }
 
 .portfolio-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Adjusted for better responsiveness */
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 30px;
   max-width: 1200px;
   margin: 0 auto;
@@ -22,13 +26,13 @@
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden; /* Ensures rounded corners apply to media */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .portfolio-item:hover {
-  transform: translateY(-10px); /* Lift effect on hover */
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+  transform: translateY(-10px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 
 .media-container {
@@ -46,12 +50,12 @@
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Ensures images/videos fill container */
+  object-fit: cover;
   border: none;
 }
 
 .media-container audio {
-  height: auto; /* Adjust height for audio controls */
+  height: auto;
   position: static;
   padding: 15px;
 }

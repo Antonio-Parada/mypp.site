@@ -6,7 +6,7 @@
   margin: 0 auto 50px auto;
   background-color: white;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Enhanced shadow */
   overflow: hidden;
 }
 
@@ -33,7 +33,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain; /* Use contain for carousel to show full image/video */
+  object-fit: contain;
 }
 
 .carousel-item-display audio {
@@ -46,51 +46,60 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.6); /* Darker background */
   color: white;
   border: none;
   padding: 15px;
   cursor: pointer;
-  font-size: 1.5em;
+  font-size: 1.8em; /* Larger arrows */
   z-index: 10;
+  border-radius: 50%; /* Circular buttons */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.carousel-nav:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  transform: translateY(-50%) scale(1.1); /* Slight scale on hover */
 }
 
 .carousel-nav.prev {
-  left: 10px;
+  left: 15px;
 }
 
 .carousel-nav.next {
-  right: 10px;
+  right: 15px;
 }
 
 .carousel-details {
-  padding: 20px;
+  padding: 30px;
   text-align: center;
 }
 
 .carousel-details h3 {
-  font-size: 1.8em;
-  margin-bottom: 10px;
+  font-size: 2em;
+  margin-bottom: 15px;
   color: #333;
 }
 
 .carousel-details p {
   font-size: 1.1em;
   color: #555;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 .view-details-button {
   background-color: #61dafb;
   color: white;
-  padding: 10px 20px;
+  padding: 12px 25px;
   border: none;
   border-radius: 5px;
-  font-size: 1em;
+  font-size: 1.1em;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .view-details-button:hover {
   background-color: #4fa3d1;
+  transform: translateY(-2px);
 }
