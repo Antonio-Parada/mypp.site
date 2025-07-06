@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Portfolio.css';
+import TemplateSelector from './TemplateSelector';
+import CarouselPortfolio from './CarouselPortfolio';
 
 const Portfolio = () => {
+  const [currentTemplate, setCurrentTemplate] = useState('grid');
+
   const mediaItems = [
     {
       id: 1,
@@ -53,37 +57,49 @@ const Portfolio = () => {
     },
   ];
 
+  const handleTemplateSelect = (template) => {
+    setCurrentTemplate(template);
+  };
+
   return (
     <section className="portfolio-section">
       <h2>My Work</h2>
-      <div className="portfolio-grid">
-        {mediaItems.map(item => (
-          <div key={item.id} className="portfolio-item">
-            <div className="media-container">
-              {item.type === 'video' && (
-                <iframe
-                  src={item.url}
-                  title={item.title}
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
-              )}
-              {item.type === 'image' && (
-                <img src={item.thumbnail} alt={item.title} />
-              )}
-              {item.type === 'audio' && (
-                <audio controls src={item.url}></audio>
-              )}
+      <TemplateSelector onSelectTemplate={handleTemplateSelect} currentTemplate={currentTemplate} />
+      
+      {currentTemplate === 'grid' && (
+        <div className="portfolio-grid">
+          {mediaItems.map(item => (
+            <div key={item.id} className="portfolio-item">
+              <div className="media-container">
+                {item.type === 'video' && (
+                  <iframe
+                    src={item.url}
+                    title={item.title}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                )}
+                {item.type === 'image' && (
+                  <img src={item.thumbnail} alt={item.title} />
+                )}
+                {item.type === 'audio' && (
+                  <audio controls src={item.url}></audio>
+                )}
+              </div>
+              <div className="item-details">
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+                <button className="view-details-button">View Details</button>
+              </div>
             </div>
-            <div className="item-details">
-              <h3>{item.title}</h3>
-              <p>{item.description}</p>
-              <button className="view-details-button">View Details</button>
-            </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
+
+      {currentTemplate === 'carousel' && (
+        <CarouselPortfolio mediaItems={mediaItems} />
+      )}
     </section>
   );
 };
