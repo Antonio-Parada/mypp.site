@@ -1,26 +1,31 @@
 import React from 'react';
+import { Link } from 'react-router-dom'; // Import Link for navigation
 
 const HomePage = () => {
   return (
     <>
       <header className="App-header">
-        <h1>AV Professionals Hub</h1>
-        <p>Your platform to showcase and manage your media work.</p>
+        <h1>Showcase Your AV Brilliance</h1>
+        <p>The premier platform for Audio-Visual Professionals to display, manage, and share their media work with stunning ease.</p>
+        <div className="cta-buttons">
+          <Link to="/portfolio" className="cta-button">Explore Portfolios</Link>
+          <Link to="/upload" className="cta-button secondary">Upload Your Work</Link>
+        </div>
       </header>
       <section className="features">
-        <h2>Features</h2>
+        <h2>Why Choose AV Professionals Hub?</h2>
         <div className="feature-grid">
           <div className="feature-item">
-            <h3>Beautiful Templates</h3>
-            <p>Choose from a variety of stunning, responsive templates designed for audio-visual content.</p>
+            <h3>Stunning Templates</h3>
+            <p>Present your videos, images, and audio with professionally designed, responsive templates that make your work shine.</p>
           </div>
           <div className="feature-item">
-            <h3>Easy Media Uploads</h3>
-            <p>Effortlessly upload your videos, images, and audio files.</p>
+            <h3>Effortless Uploads</h3>
+            <p>Intuitively upload and organize your media files with intelligent spacing and robust hosting for optimal performance.</p>
           </div>
           <div className="feature-item">
-            <h3>Intelligent Spacing & Hosting</h3>
-            <p>Your work is presented perfectly with optimized layouts and reliable hosting.</p>
+            <h3>Reliable & Fast</h3>
+            <p>Benefit from high uptime and fast loading speeds, ensuring your audience experiences your work without interruption.</p>
           </div>
         </div>
       </section>

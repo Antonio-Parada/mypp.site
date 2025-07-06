@@ -49,6 +49,41 @@ footer {
 
 .App-header p {
   font-size: 1.2em;
+  margin-bottom: 30px; /* Added margin-bottom for paragraph */
+}
+
+.cta-buttons {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.cta-button {
+  background-color: #61dafb;
+  color: #282c34;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-decoration: none; /* Ensure Link component is styled as a button */
+}
+
+.cta-button:hover {
+  background-color: #4fa3d1;
+}
+
+.cta-button.secondary {
+  background-color: transparent;
+  color: #61dafb;
+  border: 2px solid #61dafb;
+}
+
+.cta-button.secondary:hover {
+  background-color: #61dafb;
+  color: #282c34;
 }
 
 .features {
