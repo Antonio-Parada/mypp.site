@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Portfolio.css';
 import TemplateSelector from './TemplateSelector';
 import CarouselPortfolio from './CarouselPortfolio';
+import ListPortfolio from './ListPortfolio'; // Import the new ListPortfolio component
 
 const Portfolio = () => {
   const [currentTemplate, setCurrentTemplate] = useState('grid');
@@ -99,6 +100,10 @@ const Portfolio = () => {
 
       {currentTemplate === 'carousel' && (
         <CarouselPortfolio mediaItems={mediaItems} />
+      )}
+
+      {currentTemplate === 'list' && (
+        <ListPortfolio mediaItems={mediaItems} />
       )}
     </section>
   );

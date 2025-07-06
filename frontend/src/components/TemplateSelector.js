@@ -17,6 +17,12 @@ const TemplateSelector = ({ onSelectTemplate, currentTemplate }) => {
       >
         Carousel Layout
       </button>
+      <button
+        className={currentTemplate === 'list' ? 'active' : ''}
+        onClick={() => onSelectTemplate('list')}
+      >
+        List Layout
+      </button>
     </div>
   );
 };
