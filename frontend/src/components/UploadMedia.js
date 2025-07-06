@@ -40,6 +40,10 @@ const UploadMedia = () => {
     }
   };
 
+  const handleRemoveFile = (fileToRemove) => {
+    setSelectedFiles(prevFiles => prevFiles.filter(file => file !== fileToRemove));
+  };
+
   const handleUpload = () => {
     if (selectedFiles.length > 0) {
       alert(`Uploading ${selectedFiles.length} files... (Simulation)`);
@@ -69,7 +73,15 @@ const UploadMedia = () => {
             <h3>Selected Files:</h3>
             <ul>
               {selectedFiles.map((file, index) => (
-                <li key={index}>{file.name} ({Math.round(file.size / 1024)} KB)</li>
+                <li key={index} className="file-item">
+                  <div className="file-info">
+                    {file.type.startsWith('image/') && <img src={URL.createObjectURL(file)} alt="preview" className="file-preview" />}
+                    {file.type.startsWith('video/') && <video src={URL.createObjectURL(file)} controls className="file-preview" />}
+                    {file.type.startsWith('audio/') && <span className="audio-icon">🎵</span>}
+                    <span>{file.name} ({Math.round(file.size / 1024)} KB)</span>
+                  </div>
+                  <button onClick={() => handleRemoveFile(file)} className="remove-file-button">X</button>
+                </li>
               ))}
             </ul>
           </div>

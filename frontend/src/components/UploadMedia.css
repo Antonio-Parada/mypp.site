@@ -88,7 +88,7 @@
   padding: 0;
 }
 
-.file-list li {
+.file-item {
   background-color: #e9ecef;
   padding: 10px 20px;
   border-radius: 5px;
@@ -98,4 +98,38 @@
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.file-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.file-preview {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.audio-icon {
+  font-size: 2em;
+  color: #61dafb;
+}
+
+.remove-file-button {
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  font-size: 0.8em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.remove-file-button:hover {
+  background-color: #e04848;
 }
