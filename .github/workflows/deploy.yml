@@ -38,6 +38,10 @@ jobs:
         run: npm ci
         working-directory: ./frontend
 
+      - name: Debug react-scripts path
+        run: ls -l node_modules/react-scripts/bin
+        working-directory: ./frontend
+
       - name: Build React app
         run: npm run build
         working-directory: ./frontend
