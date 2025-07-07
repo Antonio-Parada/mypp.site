@@ -1,15 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google'; // Import Google OAuth components
 import './Login.css';
 
 const Login = () => {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // This function is now largely vestigial as we're moving to OAuth only.
-    // Any form submission logic here would be for a traditional email/password login.
-    console.log('Attempted traditional login (now OAuth only).');
-  };
 
   return (
     <GoogleOAuthProvider clientId="YOUR_GOOGLE_CLIENT_ID">
