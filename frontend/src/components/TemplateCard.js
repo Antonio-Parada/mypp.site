@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import templateFlavors from '../data/templateFlavors'; // Import templateFlavors
 import './TemplateCard.css';
 
 const TemplateCard = ({ title, description, imageUrl, delay, templateType, flavorId }) => {
