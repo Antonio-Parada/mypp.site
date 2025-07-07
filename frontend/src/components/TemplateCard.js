@@ -1,8 +1,16 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import './TemplateCard.css';
 
 const TemplateCard = ({ title, description, imageUrl, delay }) => {
+  const navigate = useNavigate(); // Initialize useNavigate
+
+  const handleClick = () => {
+    const templatePath = `/template/${title.split(' ')[0].toLowerCase()}`;
+    navigate(templatePath);
+  };
+
   return (
     <motion.div
       className="template-preview"
@@ -11,7 +19,7 @@ const TemplateCard = ({ title, description, imageUrl, delay }) => {
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.6, delay: delay }}
       whileHover={{ scale: 1.05, rotate: 2 }} // Expand and rotate on hover
-      onClick={() => alert(`Loading ${title} template... (Placeholder)`)} // Click handler
+      onClick={handleClick} // Use the new handleClick
     >
       <h3>{title}</h3>
       <img src={imageUrl} alt={`${title} Preview`} />

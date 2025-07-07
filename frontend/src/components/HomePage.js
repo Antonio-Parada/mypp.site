@@ -52,7 +52,7 @@ const HomePage = () => {
         </h1>
         <p>The premier platform for Audio-Visual Professionals to display, manage, and share their media work with stunning ease.</p>
         <div className="cta-buttons">
-          <Link to="/login" className="cta-button">Get Started</Link>
+          <Link to="/login" className="cta-button">Login</Link>
           <Link to="/signup" className="cta-button secondary">Sign Up</Link>
         </div>
       </header>

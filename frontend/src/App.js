@@ -7,6 +7,9 @@ import Portfolio from './components/Portfolio';
 import UploadMedia from './components/UploadMedia';
 import Login from './components/Login'; // Import Login component
 import Signup from './components/Signup'; // Import Signup component
+import GridTemplate from './components/GridTemplate';
+import CarouselTemplate from './components/CarouselTemplate';
+import ListTemplate from './components/ListTemplate';
 
 function App() {
   return (
@@ -14,7 +17,6 @@ function App() {
       <div className="App">
         <nav className="main-nav">
           <Link to="/">Home</Link>
-          <Link to="/portfolio">Portfolio</Link>
           <Link to="/upload">Upload Media</Link>
           <Link to="/login">Login</Link> {/* Add Login link */}
           <Link to="/signup">Sign Up</Link> {/* Add Sign Up link */}
@@ -26,6 +28,9 @@ function App() {
             <Route path="/upload" element={<UploadMedia />} />
             <Route path="/login" element={<Login />} /> {/* Add Login route */}
             <Route path="/signup" element={<Signup />} /> {/* Add Signup route */}
+            <Route path="/template/grid" element={<GridTemplate />} />
+            <Route path="/template/carousel" element={<CarouselTemplate />} />
+            <Route path="/template/list" element={<ListTemplate />} />
           </Routes>
         </main>
         <footer>
