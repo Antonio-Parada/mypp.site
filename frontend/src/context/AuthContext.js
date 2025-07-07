@@ -13,6 +13,17 @@ export const AuthProvider = ({ children }) => {
     return storedUser ? JSON.parse(storedUser) : null;
   });
 
+  useEffect(() => {
+    // This effect runs once on mount to ensure state is synced with localStorage
+    const storedIsLoggedIn = localStorage.getItem('isLoggedIn');
+    const storedUser = localStorage.getItem('user');
+
+    if (storedIsLoggedIn === 'true' && storedUser) {
+      setIsLoggedIn(true);
+      setUser(JSON.parse(storedUser));
+    }
+  }, []); // Empty dependency array means it runs once on mount
+
   const login = (userData) => {
     setIsLoggedIn(true);
     setUser(userData);
