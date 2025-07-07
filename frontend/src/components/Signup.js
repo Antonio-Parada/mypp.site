@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
-import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google'; // Import Google OAuth components
+import { Link, useNavigate } from 'react-router-dom';
+import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
+import { useAuth } from '../context/AuthContext'; // Import useAuth
 import './Login.css'; // Reusing Login.css for common styles
 
 const Signup = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate();
+  const { login } = useAuth(); // Use the login function from AuthContext
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -69,6 +68,7 @@ const Signup = () => {
               console.log(credentialResponse);
               // Backend Annotation:
               // Send credentialResponse.credential (ID token) to your backend for verification and user creation/login.
+              login({ token: credentialResponse.credential }); // Call login from context
               navigate('/'); // Redirect to home on successful Google signup
             }}
             onError={() => {

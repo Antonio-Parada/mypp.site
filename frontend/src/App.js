@@ -1,5 +1,6 @@
 import React from 'react';
 import { HashRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { useAuth } from './context/AuthContext'; // Import useAuth
 import './App.css';
 import './components/HomePage.css'; // Import HomePage specific styles
 import HomePage from './components/HomePage';
@@ -12,14 +13,25 @@ import CarouselTemplate from './components/CarouselTemplate';
 import ListTemplate from './components/ListTemplate';
 
 function App() {
+  const { isLoggedIn, logout } = useAuth();
+
   return (
     <Router>
       <div className="App">
         <nav className="main-nav">
           <Link to="/">Home</Link>
-          <Link to="/upload">Upload Media</Link>
-          <Link to="/login">Login</Link> {/* Add Login link */}
-          <Link to="/signup">Sign Up</Link> {/* Add Sign Up link */}
+          {isLoggedIn ? (
+            <>
+              <Link to="/portfolio">Portfolio</Link>
+              <Link to="/upload">Upload Media</Link>
+              <button onClick={logout} className="nav-button">Logout</button>
+            </>
+          ) : (
+            <>
+              <Link to="/login">Login</Link>
+              <Link to="/signup">Sign Up</Link>
+            </>
+          )}
         </nav>
         <main>
           <Routes>

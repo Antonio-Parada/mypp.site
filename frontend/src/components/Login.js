@@ -1,13 +1,15 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
-import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google'; // Import Google OAuth components
+import { Link, useNavigate } from 'react-router-dom';
+import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
+import { useAuth } from '../context/AuthContext'; // Import useAuth
 import './Login.css';
 
 const Login = () => {
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate();
+  const { login } = useAuth(); // Use the login function from AuthContext
 
   return (
-    <GoogleOAuthProvider clientId="YOUR_GOOGLE_CLIENT_ID">
+    <GoogleOAuthProvider clientId="717968394179-i9oi4uer5aalltdj3p5ebmb8rt5jj066.apps.googleusercontent.com">
       <div className="auth-container">
         <h2>Login to Your Portfolio</h2>
         <div className="google-login-container">
@@ -17,6 +19,7 @@ const Login = () => {
               console.log(credentialResponse);
               // Backend Annotation:
               // Send credentialResponse.credential (ID token) to your backend for verification and user login.
+              login({ token: credentialResponse.credential }); // Call login from context
               navigate('/'); // Redirect to home on successful Google login
             }}
             onError={() => {
