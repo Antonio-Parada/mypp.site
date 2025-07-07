@@ -7,13 +7,8 @@ import './CarouselTemplate.css';
 
 const CarouselTemplate = () => {
   const { flavorId } = useParams();
-  const flavor = templateFlavors.carousel.find(f => f.id === flavorId);
-
-  if (!flavor) {
-    return <div className="carousel-template-page"><h1>Template Not Found</h1><p>The specified carousel template flavor does not exist.</p></div>;
-  }
-
   const [currentIndex, setCurrentIndex] = useState(0);
+  const flavor = templateFlavors.carousel.find(f => f.id === flavorId);
 
   const goToNext = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % sampleMedia.length);
