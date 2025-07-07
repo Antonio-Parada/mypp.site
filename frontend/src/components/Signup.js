@@ -25,7 +25,7 @@ const Signup = () => {
   };
 
   return (
-    <GoogleOAuthProvider clientId="YOUR_GOOGLE_CLIENT_ID">
+    <GoogleOAuthProvider clientId="717968394179-i9oi4uer5aalltdj3p5ebmb8rt5jj066.apps.googleusercontent.com">
       <div className="auth-container">
         <h2>Create Your Portfolio Account</h2>
         <form onSubmit={handleSubmit} className="auth-form">
