@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google'; // Import Google OAuth components
 import './Login.css'; // Reusing Login.css for common styles
 
 const Signup = () => {
@@ -24,43 +25,58 @@ const Signup = () => {
   };
 
   return (
-    <div className="auth-container">
-      <h2>Create Your Portfolio Account</h2>
-      <form onSubmit={handleSubmit} className="auth-form">
-        <div className="form-group">
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
+    <GoogleOAuthProvider clientId="YOUR_GOOGLE_CLIENT_ID">
+      <div className="auth-container">
+        <h2>Create Your Portfolio Account</h2>
+        <form onSubmit={handleSubmit} className="auth-form">
+          <div className="form-group">
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="confirmPassword">Confirm Password</label>
+            <input
+              type="password"
+              id="confirmPassword"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+            />
+          </div>
+          <button type="submit" className="auth-button">Sign Up</button>
+        </form>
+        <div className="google-login-container">
+          <p>Or sign up with:</p>
+          <GoogleLogin
+            onSuccess={credentialResponse => {
+              console.log(credentialResponse);
+              // Backend Annotation:
+              // Send credentialResponse.credential (ID token) to your backend for verification and user creation/login.
+            }}
+            onError={() => {
+              console.log('Login Failed');
+            }}
           />
         </div>
-        <div className="form-group">
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="confirmPassword">Confirm Password</label>
-          <input
-            type="password"
-            id="confirmPassword"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit" className="auth-button">Sign Up</button>
-      </form>
-      <p>Already have an account? <Link to="/login">Login</Link></p>
-    </div>
+        <p>Already have an account? <Link to="/login">Login</Link></p>
+      </div>
+    </GoogleOAuthProvider>
   );
 };
 

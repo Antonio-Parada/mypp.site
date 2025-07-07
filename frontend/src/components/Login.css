@@ -27,7 +27,8 @@
 }
 
 .auth-form input[type="text"],
-.auth-form input[type="password"] {
+.auth-form input[type="password"],
+.auth-form input[type="email"] {
   width: 100%;
   padding: 12px;
   border: 1px solid #ddd;
@@ -46,6 +47,18 @@
   transition: background-color 0.3s ease, transform 0.2s ease;
   width: 100%;
   margin-top: 20px;
+}
+
+.google-login-container {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.google-login-container p {
+  margin-bottom: 10px;
+  color: #777;
 }
 
 .auth-button:hover {
