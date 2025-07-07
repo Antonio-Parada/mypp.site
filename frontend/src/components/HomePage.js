@@ -1,22 +1,53 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import './HomePage.css'; // New CSS for HomePage specific styles
 
 const HomePage = () => {
   const names = ["PRODUCTION", "PERSONAL", "PROFESSIONAL"];
   const [currentNameIndex, setCurrentNameIndex] = useState(0);
+  const [isMouseOverH1, setIsMouseOverH1] = useState(false); // New state to track mouse over
+  const h1Ref = useRef(null); // Ref for the h1 element
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentNameIndex((prevIndex) => (prevIndex + 1) % names.length);
-    }, 3000); // Change name every 3 seconds
+    let interval;
+    if (!isMouseOverH1) { // Only run interval if mouse is not over h1
+      interval = setInterval(() => {
+        setCurrentNameIndex((prevIndex) => (prevIndex + 1) % names.length);
+      }, 3000); // Change name every 3 seconds
+    }
     return () => clearInterval(interval);
-  }, [names.length]);
+  }, [names.length, isMouseOverH1]); // Add isMouseOverH1 to dependencies
+
+  const handleMouseMove = (event) => {
+    if (!h1Ref.current) return;
+
+    setIsMouseOverH1(true); // Set mouse over state
+
+    const { left, width } = h1Ref.current.getBoundingClientRect();
+    const mouseX = event.clientX - left; // Mouse position relative to h1
+    const segmentWidth = width / names.length;
+
+    let newIndex = Math.floor(mouseX / segmentWidth);
+    // Ensure index is within bounds
+    newIndex = Math.max(0, Math.min(names.length - 1, newIndex));
+
+    setCurrentNameIndex(newIndex);
+  };
+
+  const handleMouseLeave = () => {
+    setIsMouseOverH1(false); // Resume interval
+  };
 
   return (
     <>
       <header className="App-header">
-        <h1>MY <span className="dynamic-name">{names[currentNameIndex]}</span> PORTFOLIO</h1>
+        <h1
+          ref={h1Ref} // Attach ref
+          onMouseMove={handleMouseMove} // Add mouse move handler
+          onMouseLeave={handleMouseLeave} // Add mouse leave handler
+        >
+          MY <span className="dynamic-name">{names[currentNameIndex]}</span> PORTFOLIO
+        </h1>
         <p>The premier platform for Audio-Visual Professionals to display, manage, and share their media work with stunning ease.</p>
         <div className="cta-buttons">
           <Link to="/login" className="cta-button">Get Started</Link>
