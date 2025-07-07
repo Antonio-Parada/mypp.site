@@ -14,6 +14,44 @@
   text-align: center;
 }
 
+.youtube-input-area {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  align-items: center;
+}
+
+.youtube-url-input {
+  flex-grow: 1;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1em;
+}
+
+.add-youtube-button {
+  background-color: #ff0000; /* YouTube red */
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.add-youtube-button:hover {
+  background-color: #cc0000;
+  transform: translateY(-2px);
+}
+
 .upload-area {
   background-color: white;
   padding: 40px;
@@ -50,23 +88,26 @@
   font-size: 1em;
 }
 
-.upload-area button {
+.upload-all-button {
   background-color: #61dafb;
   color: white;
-  padding: 12px 25px;
+  padding: 15px 30px;
   border: none;
   border-radius: 5px;
-  font-size: 1.1em;
+  font-size: 1.2em;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 30px;
+  width: fit-content;
+  align-self: center;
 }
 
-.upload-area button:disabled {
+.upload-all-button:disabled {
   background-color: #cccccc;
   cursor: not-allowed;
 }
 
-.upload-area button:hover:not(:disabled) {
+.upload-all-button:hover:not(:disabled) {
   background-color: #4fa3d1;
   transform: translateY(-2px);
 }
@@ -95,9 +136,9 @@
   margin-bottom: 8px;
   font-size: 1em;
   display: flex;
-  flex-direction: column; /* Changed to column for metadata inputs */
+  flex-direction: column;
   justify-content: space-between;
-  align-items: flex-start; /* Align items to start for better metadata layout */
+  align-items: flex-start;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
@@ -105,8 +146,8 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 10px; /* Space between file info and metadata */
-  width: 100%; /* Ensure it takes full width */
+  margin-bottom: 10px;
+  width: 100%;
 }
 
 .file-preview {
@@ -114,6 +155,11 @@
   height: 50px;
   object-fit: cover;
   border-radius: 5px;
+}
+
+.youtube-preview {
+  width: 100px; /* Adjust size for YouTube preview */
+  height: 75px; /* Adjust size for YouTube preview (4:3 aspect ratio) */
 }
 
 .audio-icon {
@@ -131,7 +177,7 @@
   font-size: 0.8em;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  align-self: flex-end; /* Position remove button to the right */
+  align-self: flex-end;
 }
 
 .remove-file-button:hover {

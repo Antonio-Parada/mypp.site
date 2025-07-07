@@ -4,6 +4,7 @@ import './UploadMedia.css';
 const UploadMedia = () => {
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [isDragging, setIsDragging] = useState(false);
+  const [youtubeUrl, setYoutubeUrl] = useState('');
 
   const allowedFileTypes = [
     'video/mp4', 'video/webm', 'video/ogg',
@@ -22,11 +23,22 @@ const UploadMedia = () => {
     };
   }, [selectedFiles]);
 
+  const getYouTubeEmbedUrl = (url) => {
+    const regExp = /^(?:https?:\/\/)?(?:www\.)?(?:m\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=|embed\/|v\/|)([^&?\n]*)/;
+    const match = url.match(regExp);
+    if (match && match[1]) {
+      return `https://www.youtube.com/embed/${match[1]}`;
+    }
+    return null;
+  };
+
   const handleFileChange = (event) => {
     const files = Array.from(event.target.files);
     const newFiles = files.map(file => {
       if (allowedFileTypes.includes(file.type)) {
         return {
+          id: Date.now() + Math.random(), // Unique ID for key prop
+          type: file.type.startsWith('image') ? 'image' : file.type.startsWith('video') ? 'video' : 'audio',
           file,
           objectURL: URL.createObjectURL(file),
           title: '',
@@ -41,6 +53,30 @@ const UploadMedia = () => {
 
     if (newFiles.length !== files.length) {
       alert('Some selected files were not valid media types and were ignored.');
+    }
+  };
+
+  const handleYoutubeUrlChange = (e) => {
+    setYoutubeUrl(e.target.value);
+  };
+
+  const handleAddYoutubeVideo = () => {
+    const embedUrl = getYouTubeEmbedUrl(youtubeUrl);
+    if (embedUrl) {
+      setSelectedFiles(prevFiles => [
+        ...prevFiles,
+        {
+          id: Date.now() + Math.random(), // Unique ID
+          type: 'youtube',
+          url: embedUrl,
+          title: '',
+          description: '',
+          tags: '',
+        },
+      ]);
+      setYoutubeUrl(''); // Clear input
+    } else {
+      alert('Please enter a valid YouTube URL.');
     }
   };
 
@@ -60,6 +96,8 @@ const UploadMedia = () => {
     const newFiles = files.map(file => {
       if (allowedFileTypes.includes(file.type)) {
         return {
+          id: Date.now() + Math.random(), // Unique ID
+          type: file.type.startsWith('image') ? 'image' : file.type.startsWith('video') ? 'video' : 'audio',
           file,
           objectURL: URL.createObjectURL(file),
           title: '',
@@ -79,7 +117,7 @@ const UploadMedia = () => {
 
   const handleRemoveFile = (fileToRemove) => {
     setSelectedFiles(prevFiles => {
-      const updatedFiles = prevFiles.filter(file => file !== fileToRemove);
+      const updatedFiles = prevFiles.filter(file => file.id !== fileToRemove.id);
       if (fileToRemove.objectURL) {
         URL.revokeObjectURL(fileToRemove.objectURL);
       }
@@ -87,92 +125,118 @@ const UploadMedia = () => {
     });
   };
 
-  const handleMetadataChange = (index, field, value) => {
+  const handleMetadataChange = (id, field, value) => {
     setSelectedFiles(prevFiles =>
-      prevFiles.map((file, i) =>
-        i === index ? { ...file, [field]: value } : file
+      prevFiles.map(file =>
+        file.id === id ? { ...file, [field]: value } : file
       )
     );
   };
 
   const handleUpload = () => {
     if (selectedFiles.length > 0) {
-      alert(`Uploading ${selectedFiles.length} files with metadata... (Simulation)`);
-      // Backend Annotation:
-      // This is where the actual upload to a backend would occur.
-      // For each file in `selectedFiles`:
-      // 1. Create a FormData object.
-      // 2. Append the file: formData.append('mediaFile', file.file);
-      // 3. Append metadata: formData.append('title', file.title); etc.
-      // 4. Send a POST request to your API endpoint (e.g., /api/media/upload) with the FormData.
-      //    Example using fetch:
-      //    fetch('/api/media/upload', {
-      //      method: 'POST',
-      //      body: formData,
-      //      headers: { 'Authorization': 'Bearer YOUR_AUTH_TOKEN' } // Include auth token if user is logged in
-      //    })
-      //    .then(response => response.json())
-      //    .then(data => console.log('Upload success:', data))
-      //    .catch(error => console.error('Upload error:', error));
+      alert(`Uploading ${selectedFiles.length} items with metadata... (Simulation)`);
+      // Backend Annotation for Uploads:
+      // For each item in `selectedFiles`:
+      // If item.type is 'youtube':
+      //   - Send a POST request to /api/media/youtube-embed
+      //   - Body: { youtubeUrl: item.url, title: item.title, description: item.description, tags: item.tags }
+      //   - Backend would: Validate URL, potentially fetch more metadata from YouTube Data API (using a YouTube API Key),
+      //     store embed URL and metadata in database, associate with user.
+      // If item.type is 'image', 'video', or 'audio':
+      //   - Create a FormData object.
+      //   - Append the file: formData.append('mediaFile', item.file);
+      //   - Append metadata: formData.append('title', item.title); etc.
+      //   - Send a POST request to /api/media/upload
+      //   - Backend would: Store file in cloud storage (AWS S3, GCS), store metadata in database,
+      //     potentially trigger media processing (thumbnail generation, transcoding).
+      // Authentication/Authorization: Both endpoints would require an authenticated user (e.g., JWT in Authorization header).
 
       setSelectedFiles([]);
     } else {
-      alert('Please select files to upload.');
+      alert('Please select files or add YouTube URLs to upload.');
     }
   };
 
   return (
     <section className="upload-section">
       <h2>Upload Your Media</h2>
+
+      <div className="youtube-input-area">
+        <input
+          type="text"
+          placeholder="Paste YouTube video URL here"
+          value={youtubeUrl}
+          onChange={handleYoutubeUrlChange}
+          className="youtube-url-input"
+        />
+        <button onClick={handleAddYoutubeVideo} disabled={!youtubeUrl.trim()} className="add-youtube-button">
+          Add YouTube Video
+        </button>
+      </div>
+
       <div
         className={`upload-area ${isDragging ? 'dragging' : ''}`}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
       >
-        <p>Drag & Drop your media files here, or</p>
+        <p>Drag & Drop your local media files here, or</p>
         <input type="file" multiple onChange={handleFileChange} accept={allowedFileTypes.join(',')} />
-        <button onClick={handleUpload} disabled={selectedFiles.length === 0}>
-          Upload Files
-        </button>
-        {selectedFiles.length > 0 && (
-          <div className="file-list">
-            <h3>Selected Files:</h3>
-            <ul>
-              {selectedFiles.map((file, index) => (
-                <li key={file.file.name + index} className="file-item">
-                  <div className="file-info">
-                    {file.file.type.startsWith('image/') && <img src={file.objectURL} alt="preview" className="file-preview" />}
-                    {file.file.type.startsWith('video/') && <video src={file.objectURL} controls className="file-preview" />}
-                    {file.file.type.startsWith('audio/') && <span className="audio-icon">🎵</span>}
-                    <span>{file.file.name} ({Math.round(file.file.size / 1024)} KB)</span>
-                  </div>
-                  <div className="file-metadata">
-                    <input
-                      type="text"
-                      placeholder="Title"
-                      value={file.title}
-                      onChange={(e) => handleMetadataChange(index, 'title', e.target.value)}
-                    />
-                    <textarea
-                      placeholder="Description"
-                      value={file.description}
-                      onChange={(e) => handleMetadataChange(index, 'description', e.target.value)}
-                    ></textarea>
-                    <input
-                      type="text"
-                      placeholder="Tags (comma-separated)"
-                      value={file.tags}
-                      onChange={(e) => handleMetadataChange(index, 'tags', e.target.value)}
-                    />
-                  </div>
-                  <button onClick={() => handleRemoveFile(file)} className="remove-file-button">X</button>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+        
       </div>
+
+      <button onClick={handleUpload} disabled={selectedFiles.length === 0} className="upload-all-button">
+          Upload All Selected
+        </button>
+
+      {selectedFiles.length > 0 && (
+        <div className="file-list">
+          <h3>Items to Upload:</h3>
+          <ul>
+            {selectedFiles.map((item, index) => (
+              <li key={item.id} className="file-item">
+                <div className="file-info">
+                  {item.type === 'image' && <img src={item.objectURL} alt="preview" className="file-preview" />}
+                  {item.type === 'video' && <video src={item.objectURL} controls className="file-preview" />}
+                  {item.type === 'audio' && <span className="audio-icon">🎵</span>}
+                  {item.type === 'youtube' && (
+                    <iframe
+                      src={item.url}
+                      title="YouTube video preview"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="file-preview youtube-preview"
+                    ></iframe>
+                  )}
+                  <span>{item.file ? `${item.file.name} (${Math.round(item.file.size / 1024)} KB)` : 'YouTube Video'}</span>
+                </div>
+                <div className="file-metadata">
+                  <input
+                    type="text"
+                    placeholder="Title"
+                    value={item.title}
+                    onChange={(e) => handleMetadataChange(item.id, 'title', e.target.value)}
+                  />
+                  <textarea
+                    placeholder="Description"
+                    value={item.description}
+                    onChange={(e) => handleMetadataChange(item.id, 'description', e.target.value)}
+                  ></textarea>
+                  <input
+                    type="text"
+                    placeholder="Tags (comma-separated)"
+                    value={item.tags}
+                    onChange={(e) => handleMetadataChange(item.id, 'tags', e.target.value)}
+                  />
+                </div>
+                <button onClick={() => handleRemoveFile(item)} className="remove-file-button">X</button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </section>
   );
 };
