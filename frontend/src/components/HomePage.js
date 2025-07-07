@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion'; // Import motion
 import './HomePage.css'; // New CSS for HomePage specific styles
 
 const HomePage = () => {
@@ -55,7 +56,13 @@ const HomePage = () => {
         </div>
       </header>
 
-      <section className="template-showcase">
+      <motion.section
+        className="template-showcase"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.5 }}
+        transition={{ duration: 0.8 }}
+      >
         <h2>Beautiful Templates for Your Work</h2>
         <div className="template-grid">
           <div className="template-preview">
@@ -74,7 +81,7 @@ const HomePage = () => {
             <p>Detailed view for project descriptions and context.</p>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       <section className="features">
         <h2>Why Choose My Portfolio?</h2>
