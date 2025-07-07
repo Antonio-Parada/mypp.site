@@ -95,8 +95,9 @@
   margin-bottom: 8px;
   font-size: 1em;
   display: flex;
+  flex-direction: column; /* Changed to column for metadata inputs */
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start; /* Align items to start for better metadata layout */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
@@ -104,6 +105,8 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  margin-bottom: 10px; /* Space between file info and metadata */
+  width: 100%; /* Ensure it takes full width */
 }
 
 .file-preview {
@@ -128,8 +131,30 @@
   font-size: 0.8em;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  align-self: flex-end; /* Position remove button to the right */
 }
 
 .remove-file-button:hover {
   background-color: #e04848;
+}
+
+.file-metadata {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.file-metadata input[type="text"],
+.file-metadata textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.95em;
+}
+
+.file-metadata textarea {
+  resize: vertical;
+  min-height: 60px;
 }
