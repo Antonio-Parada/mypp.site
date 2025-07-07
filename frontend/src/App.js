@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import './App.css';
 import HomePage from './components/HomePage';
 import Portfolio from './components/Portfolio';
@@ -7,7 +7,7 @@ import UploadMedia from './components/UploadMedia';
 
 function App() {
   return (
-    <Router basename="/mypp.site">
+    <Router>
       <div className="App">
         <nav className="main-nav">
           <Link to="/">Home</Link>
