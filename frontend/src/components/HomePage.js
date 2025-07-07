@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import * as motion from 'framer-motion'; // Import motion as a namespace object
+
 import TemplateCard from './TemplateCard'; // Import TemplateCard
 import './HomePage.css'; // New CSS for HomePage specific styles
 
