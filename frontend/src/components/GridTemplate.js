@@ -19,7 +19,7 @@ const GridTemplate = () => {
       <h1>{flavor.name} Grid Portfolio</h1>
       <p>{flavor.description}</p>
       <div className="grid-container" style={{
-        gridTemplateColumns: `repeat(auto-fit, minmax(${flavor.config.cardStyle ? '250px' : '200px'}, 1fr))`, // Adjust based on cardStyle
+        gridTemplateColumns: flavor.config.columns === 'auto-fit' ? 'repeat(auto-fit, minmax(280px, 1fr))' : `repeat(${flavor.config.columns}, 1fr)`,
         gap: flavor.config.gap,
       }}>
         {sampleMedia.map((media, index) => (
@@ -30,17 +30,21 @@ const GridTemplate = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6, delay: index * 0.1 }}
-            whileHover={{ scale: 1.03, boxShadow: '0 8px 16px rgba(0,0,0,0.2)' }}
+            whileHover={{ scale: 1.03, boxShadow: flavor.config.itemShadow || '0 8px 16px rgba(0,0,0,0.2)' }}
             style={{
               aspectRatio: flavor.config.aspectRatio || 'auto',
+              backgroundColor: flavor.config.itemBg,
+              boxShadow: flavor.config.itemShadow,
+              borderRadius: flavor.config.itemBorderRadius,
+              border: flavor.config.itemBorder,
             }}
           >
             <div className="media-wrapper">
               <MediaEmbed media={media} />
             </div>
             <div className="item-details">
-              <h3>{media.title}</h3>
-              <p>{media.description}</p>
+              <h3 style={{ color: flavor.config.titleColor }}>{media.title}</h3>
+              <p style={{ color: flavor.config.descriptionColor }}>{media.description}</p>
             </div>
           </motion.div>
         ))}

@@ -4,14 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import templateFlavors from '../data/templateFlavors'; // Import templateFlavors
 import './TemplateCard.css';
 
-const TemplateCard = ({ title, description, imageUrl, delay }) => {
+const TemplateCard = ({ title, description, imageUrl, delay, templateType, flavorId }) => {
   const navigate = useNavigate(); // Initialize useNavigate
 
   const handleClick = () => {
-    const templateType = title.split(' ')[0].toLowerCase();
-    const defaultFlavorId = templateFlavors[templateType] ? templateFlavors[templateType][0].id : '';
-    const templatePath = `/template/${templateType}/${defaultFlavorId}`;
-    navigate(templatePath);
+    const path = `/template/${templateType}/${flavorId}`;
+    navigate(path);
   };
 
   return (

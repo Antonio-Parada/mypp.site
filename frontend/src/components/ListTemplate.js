@@ -27,7 +27,13 @@ const ListTemplate = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6, delay: index * 0.1 }}
-            whileHover={{ scale: 1.02, boxShadow: '0 6px 12px rgba(0,0,0,0.15)' }}
+            whileHover={{ scale: 1.02, boxShadow: flavor.config.itemShadow || '0 6px 12px rgba(0,0,0,0.15)' }}
+            style={{
+              backgroundColor: flavor.config.itemBg,
+              boxShadow: flavor.config.itemShadow,
+              borderRadius: flavor.config.itemBorderRadius,
+              border: flavor.config.itemBorder,
+            }}
           >
             {flavor.config.showThumbnails && (
               <div className="list-item-thumbnail">
@@ -35,8 +41,8 @@ const ListTemplate = () => {
               </div>
             )}
             <div className="list-item-content">
-              <h3>{media.title}</h3>
-              {flavor.config.showDescription && <p>{media.description}</p>}
+              <h3 style={{ color: flavor.config.titleColor }}>{media.title}</h3>
+              {flavor.config.showDescription && <p style={{ color: flavor.config.descriptionColor }}>{media.description}</p>}
               {flavor.config.expanded && (
                 <div className="list-item-full-media">
                   <MediaEmbed media={media} />

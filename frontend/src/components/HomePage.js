@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
-import TemplateCard from './TemplateCard'; // Import TemplateCard
+import TemplateCard from './TemplateCard';
+import templateFlavors from '../data/templateFlavors'; // Import templateFlavors
 import './HomePage.css'; // New CSS for HomePage specific styles
 
 const HomePage = () => {
@@ -60,24 +61,19 @@ const HomePage = () => {
       <section className="template-showcase">
         <h2>Beautiful Templates for Your Work</h2>
         <div className="template-grid">
-          <TemplateCard
-            title="Grid Layout"
-            description="Classic and clean, perfect for diverse media."
-            imageUrl="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            delay={0.2}
-          />
-          <TemplateCard
-            title="Carousel Layout"
-            description="Engaging, interactive display for featured work."
-            imageUrl="https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            delay={0.4}
-          />
-          <TemplateCard
-            title="List Layout"
-            description="Detailed view for project descriptions and context."
-            imageUrl="https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            delay={0.6}
-          />
+          {Object.keys(templateFlavors).map((templateType, typeIndex) => (
+            templateFlavors[templateType].map((flavor, flavorIndex) => (
+              <TemplateCard
+                key={flavor.id}
+                title={`${flavor.name} ${templateType.charAt(0).toUpperCase() + templateType.slice(1)}`}
+                description={flavor.description}
+                imageUrl={flavor.config.thumbnail || `https://via.placeholder.com/300x200?text=${flavor.name}`}
+                delay={(typeIndex * templateFlavors[templateType].length + flavorIndex) * 0.1}
+                templateType={templateType}
+                flavorId={flavor.id}
+              />
+            ))
+          ))}
         </div>
       </section>
 

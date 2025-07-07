@@ -43,7 +43,10 @@ import './CarouselTemplate.css';
       <div className="carousel-template-page">
         <h1>{flavor.name} Carousel Portfolio</h1>
         <p>{flavor.description}</p>
-        <div className="carousel-wrapper">
+        <div className="carousel-wrapper" style={{
+          boxShadow: flavor.config.itemShadow,
+          backgroundColor: flavor.config.itemBg,
+        }}>
           <div className="carousel-container">
             <AnimatePresence initial={false} custom={1}>
               <motion.div
@@ -66,8 +69,8 @@ import './CarouselTemplate.css';
                 </div>
               </motion.div>
             </AnimatePresence>
-            <button onClick={() => paginate(1)} className="carousel-button next">&#10095;</button>
-            <button onClick={() => paginate(-1)} className="carousel-button prev">&#10094;</button>
+            <button onClick={() => paginate(1)} className="carousel-button next" style={{ backgroundColor: flavor.config.navColor }}>&#10095;</button>
+            <button onClick={() => paginate(-1)} className="carousel-button prev" style={{ backgroundColor: flavor.config.navColor }}>&#10094;</button>
           </div>
           <div className="carousel-dots">
             {sampleMedia.map((_, index) => (
@@ -75,6 +78,7 @@ import './CarouselTemplate.css';
                 key={index}
                 className={`dot ${currentIndex === index ? 'active' : ''}`}
                 onClick={() => setCurrentIndex(index)}
+                style={{ backgroundColor: currentIndex === index ? flavor.config.activeDotColor : flavor.config.dotColor }}
               ></span>
             ))}
           </div>
