@@ -5,6 +5,8 @@ import './components/HomePage.css'; // Import HomePage specific styles
 import HomePage from './components/HomePage';
 import Portfolio from './components/Portfolio';
 import UploadMedia from './components/UploadMedia';
+import Login from './components/Login'; // Import Login component
+import Signup from './components/Signup'; // Import Signup component
 
 function App() {
   return (
@@ -14,12 +16,16 @@ function App() {
           <Link to="/">Home</Link>
           <Link to="/portfolio">Portfolio</Link>
           <Link to="/upload">Upload Media</Link>
+          <Link to="/login">Login</Link> {/* Add Login link */}
+          <Link to="/signup">Sign Up</Link> {/* Add Sign Up link */}
         </nav>
         <main>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/portfolio" element={<Portfolio />} />
             <Route path="/upload" element={<UploadMedia />} />
+            <Route path="/login" element={<Login />} /> {/* Add Login route */}
+            <Route path="/signup" element={<Signup />} /> {/* Add Signup route */}
           </Routes>
         </main>
         <footer>
