@@ -1,9 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google'; // Import Google OAuth components
 import './Login.css';
 
 const Login = () => {
+  const navigate = useNavigate(); // Initialize useNavigate
 
   return (
     <GoogleOAuthProvider clientId="YOUR_GOOGLE_CLIENT_ID">
@@ -16,6 +17,7 @@ const Login = () => {
               console.log(credentialResponse);
               // Backend Annotation:
               // Send credentialResponse.credential (ID token) to your backend for verification and user login.
+              navigate('/'); // Redirect to home on successful Google login
             }}
             onError={() => {
               console.log('Login Failed');
