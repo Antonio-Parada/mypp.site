@@ -63,19 +63,19 @@ const HomePage = () => {
           <TemplateCard
             title="Grid Layout"
             description="Classic and clean, perfect for diverse media."
-            imageUrl="https://via.placeholder.com/300x200?text=Grid+Template"
+            imageUrl="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             delay={0.2}
           />
           <TemplateCard
             title="Carousel Layout"
             description="Engaging, interactive display for featured work."
-            imageUrl="https://via.placeholder.com/300x200?text=Carousel+Template"
+            imageUrl="https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             delay={0.4}
           />
           <TemplateCard
             title="List Layout"
             description="Detailed view for project descriptions and context."
-            imageUrl="https://via.placeholder.com/300x200?text=List+Template"
+            imageUrl="https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             delay={0.6}
           />
         </div>
