@@ -7,7 +7,7 @@ import UploadMedia from './components/UploadMedia';
 
 function App() {
   return (
-    <Router basename="/mypp.site">
+    <Router>
       <div className="App">
         <nav className="main-nav">
           <Link to="/">Home</Link>
