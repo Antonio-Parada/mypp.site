@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion'; // Import motion
+import { motion } from 'framer-motion';
+import TemplateCard from './TemplateCard'; // Import TemplateCard
 import './HomePage.css'; // New CSS for HomePage specific styles
 
 const HomePage = () => {
@@ -56,32 +57,29 @@ const HomePage = () => {
         </div>
       </header>
 
-      <motion.section
-        className="template-showcase"
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.5 }}
-        transition={{ duration: 0.8 }}
-      >
+      <section className="template-showcase">
         <h2>Beautiful Templates for Your Work</h2>
         <div className="template-grid">
-          <div className="template-preview">
-            <h3>Grid Layout</h3>
-            <img src="https://via.placeholder.com/300x200?text=Grid+Template" alt="Grid Template Preview" />
-            <p>Classic and clean, perfect for diverse media.</p>
-          </div>
-          <div className="template-preview">
-            <h3>Carousel Layout</h3>
-            <img src="https://via.placeholder.com/300x200?text=Carousel+Template" alt="Carousel Template Preview" />
-            <p>Engaging, interactive display for featured work.</p>
-          </div>
-          <div className="template-preview">
-            <h3>List Layout</h3>
-            <img src="https://via.placeholder.com/300x200?text=List+Template" alt="List Template Preview" />
-            <p>Detailed view for project descriptions and context.</p>
-          </div>
+          <TemplateCard
+            title="Grid Layout"
+            description="Classic and clean, perfect for diverse media."
+            imageUrl="https://via.placeholder.com/300x200?text=Grid+Template"
+            delay={0.2}
+          />
+          <TemplateCard
+            title="Carousel Layout"
+            description="Engaging, interactive display for featured work."
+            imageUrl="https://via.placeholder.com/300x200?text=Carousel+Template"
+            delay={0.4}
+          />
+          <TemplateCard
+            title="List Layout"
+            description="Detailed view for project descriptions and context."
+            imageUrl="https://via.placeholder.com/300x200?text=List+Template"
+            delay={0.6}
+          />
         </div>
-      </motion.section>
+      </section>
 
       <section className="features">
         <h2>Why Choose My Portfolio?</h2>
