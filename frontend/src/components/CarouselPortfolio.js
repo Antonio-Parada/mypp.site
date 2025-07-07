@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './CarouselPortfolio.css';
 
-const CarouselPortfolio = ({ mediaItems }) => {
+const CarouselPortfolio = ({ mediaItems, onItemClick }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const goToNext = () => {
@@ -20,7 +20,7 @@ const CarouselPortfolio = ({ mediaItems }) => {
     <div className="carousel-portfolio">
       <div className="carousel-display">
         <button onClick={goToPrevious} className="carousel-nav prev">&lt;</button>
-        <div className="carousel-item-display">
+        <div className="carousel-item-display" onClick={() => onItemClick(currentItem)}> {/* Make item clickable */}
           {currentItem.type === 'video' && (
             <iframe
               src={currentItem.url}
@@ -42,7 +42,7 @@ const CarouselPortfolio = ({ mediaItems }) => {
       <div className="carousel-details">
         <h3>{currentItem.title}</h3>
         <p>{currentItem.description}</p>
-        <button className="view-details-button">View Details</button>
+        {/* <button className="view-details-button">View Details</button> */}
       </div>
     </div>
   );

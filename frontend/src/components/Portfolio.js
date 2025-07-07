@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import './Portfolio.css';
 import TemplateSelector from './TemplateSelector';
 import CarouselPortfolio from './CarouselPortfolio';
-import ListPortfolio from './ListPortfolio'; // Import the new ListPortfolio component
+import ListPortfolio from './ListPortfolio';
+import MediaDetailModal from './MediaDetailModal'; // Import the new modal component
 
 const Portfolio = () => {
   const [currentTemplate, setCurrentTemplate] = useState('grid');
+  const [selectedMedia, setSelectedMedia] = useState(null); // State to hold the selected media item for the modal
 
   const mediaItems = [
     {
@@ -62,6 +64,14 @@ const Portfolio = () => {
     setCurrentTemplate(template);
   };
 
+  const handleItemClick = (item) => {
+    setSelectedMedia(item);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedMedia(null);
+  };
+
   return (
     <section className="portfolio-section">
       <h2>My Work</h2>
@@ -70,7 +80,7 @@ const Portfolio = () => {
       {currentTemplate === 'grid' && (
         <div className="portfolio-grid">
           {mediaItems.map(item => (
-            <div key={item.id} className="portfolio-item">
+            <div key={item.id} className="portfolio-item" onClick={() => handleItemClick(item)}> {/* Make item clickable */}
               <div className="media-container">
                 {item.type === 'video' && (
                   <iframe
@@ -91,7 +101,7 @@ const Portfolio = () => {
               <div className="item-details">
                 <h3>{item.title}</h3>
                 <p>{item.description}</p>
-                <button className="view-details-button">View Details</button>
+                {/* <button className="view-details-button">View Details</button> */}
               </div>
             </div>
           ))}
@@ -99,11 +109,15 @@ const Portfolio = () => {
       )}
 
       {currentTemplate === 'carousel' && (
-        <CarouselPortfolio mediaItems={mediaItems} />
+        <CarouselPortfolio mediaItems={mediaItems} onItemClick={handleItemClick} />
       )}
 
       {currentTemplate === 'list' && (
-        <ListPortfolio mediaItems={mediaItems} />
+        <ListPortfolio mediaItems={mediaItems} onItemClick={handleItemClick} />
+      )}
+
+      {selectedMedia && (
+        <MediaDetailModal mediaItem={selectedMedia} onClose={handleCloseModal} />
       )}
     </section>
   );

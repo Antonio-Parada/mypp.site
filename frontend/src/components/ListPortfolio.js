@@ -1,11 +1,11 @@
 import React from 'react';
 import './ListPortfolio.css';
 
-const ListPortfolio = ({ mediaItems }) => {
+const ListPortfolio = ({ mediaItems, onItemClick }) => {
   return (
     <div className="list-portfolio">
       {mediaItems.map(item => (
-        <div key={item.id} className="list-item">
+        <div key={item.id} className="list-item" onClick={() => onItemClick(item)}> {/* Make item clickable */}
           <div className="list-media-container">
             {item.type === 'video' && (
               <iframe
@@ -26,7 +26,7 @@ const ListPortfolio = ({ mediaItems }) => {
           <div className="list-item-details">
             <h3>{item.title}</h3>
             <p>{item.description}</p>
-            <button className="view-details-button">View Details</button>
+            {/* <button className="view-details-button">View Details</button> */}
           </div>
         </div>
       ))}
