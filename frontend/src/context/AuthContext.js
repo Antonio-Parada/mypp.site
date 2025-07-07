@@ -1,21 +1,30 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext, useEffect } from 'react';
 
 const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [user, setUser] = useState(null); // Could store user details like name, email, profile pic
+  const [isLoggedIn, setIsLoggedIn] = useState(() => {
+    // Check localStorage for login status on initial load
+    return localStorage.getItem('isLoggedIn') === 'true';
+  });
+  const [user, setUser] = useState(() => {
+    // Check localStorage for user data on initial load
+    const storedUser = localStorage.getItem('user');
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
 
   const login = (userData) => {
     setIsLoggedIn(true);
     setUser(userData);
-    // In a real app, you'd store tokens (e.g., JWT) in localStorage/sessionStorage here
+    localStorage.setItem('isLoggedIn', 'true');
+    localStorage.setItem('user', JSON.stringify(userData));
   };
 
   const logout = () => {
     setIsLoggedIn(false);
     setUser(null);
-    // In a real app, you'd clear tokens from localStorage/sessionStorage here
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('user');
   };
 
   return (
