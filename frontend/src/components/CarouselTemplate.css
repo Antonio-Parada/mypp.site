@@ -1,21 +1,68 @@
 .carousel-template-page {
   padding: 20px;
   text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.carousel-template-page h1 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.carousel-template-page p {
+  font-size: 1.1em;
+  color: #666;
+  margin-bottom: 40px;
+}
+
+.carousel-wrapper {
+  position: relative;
+  width: 100%;
+  height: 500px; /* Fixed height for carousel */
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .carousel-container {
   position: relative;
   width: 100%;
-  max-width: 600px;
-  margin: 30px auto;
-  overflow: hidden;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  height: 100%;
 }
 
-.carousel-image {
+.carousel-item {
+  position: absolute;
   width: 100%;
-  display: block;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
+}
+
+.carousel-item .media-wrapper {
+  width: 80%;
+  max-height: 70%;
+  margin-bottom: 15px;
+}
+
+.carousel-item .item-details {
+  text-align: center;
+  padding: 0 20px;
+}
+
+.carousel-item .item-details h3 {
+  font-size: 1.8em;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.carousel-item .item-details p {
+  font-size: 1em;
+  color: #666;
 }
 
 .carousel-button {
@@ -25,22 +72,24 @@
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
   border: none;
-  padding: 10px 15px;
+  padding: 15px 20px;
   cursor: pointer;
-  font-size: 1.5em;
+  font-size: 1.8em;
   z-index: 10;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.carousel-button:hover {
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 .carousel-button.prev {
-  left: 0;
-  border-top-right-radius: 8px;
-  border-bottom-right-radius: 8px;
+  left: 10px;
 }
 
 .carousel-button.next {
-  right: 0;
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px;
+  right: 10px;
 }
 
 .carousel-dots {
@@ -49,14 +98,47 @@
 
 .dot {
   display: inline-block;
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
   background-color: #bbb;
   border-radius: 50%;
-  margin: 0 5px;
+  margin: 0 6px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .dot.active {
   background-color: #717171;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .carousel-template-page h1 {
+    font-size: 2em;
+  }
+  .carousel-template-page p {
+    font-size: 1em;
+  }
+  .carousel-wrapper {
+    height: 400px;
+  }
+  .carousel-button {
+    padding: 10px 15px;
+    font-size: 1.5em;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-wrapper {
+    height: 300px;
+  }
+  .carousel-item .media-wrapper {
+    width: 90%;
+  }
+  .carousel-item .item-details h3 {
+    font-size: 1.5em;
+  }
+  .carousel-item .item-details p {
+    font-size: 0.9em;
+  }
 }

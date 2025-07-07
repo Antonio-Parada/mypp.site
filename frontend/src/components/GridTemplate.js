@@ -1,5 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import { motion } from 'framer-motion'; // Import motion
 import sampleMedia from '../data/sampleMedia';
 import templateFlavors from '../data/templateFlavors';
 import MediaEmbed from './MediaEmbed';
@@ -22,14 +23,26 @@ const GridTemplate = () => {
         gap: flavor.config.gap,
       }}>
         {sampleMedia.map((media, index) => (
-          <div key={media.id} className="grid-item" style={{
-            aspectRatio: flavor.config.aspectRatio || 'auto',
-            // Add more style adjustments based on flavor.config
-          }}>
-            <MediaEmbed media={media} />
-            <h3>{media.title}</h3>
-            <p>{media.description}</p>
-          </div>
+          <motion.div
+            key={media.id}
+            className={`grid-item ${flavor.config.cardStyle ? 'card-style' : ''}`}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, delay: index * 0.1 }}
+            whileHover={{ scale: 1.03, boxShadow: '0 8px 16px rgba(0,0,0,0.2)' }}
+            style={{
+              aspectRatio: flavor.config.aspectRatio || 'auto',
+            }}
+          >
+            <div className="media-wrapper">
+              <MediaEmbed media={media} />
+            </div>
+            <div className="item-details">
+              <h3>{media.title}</h3>
+              <p>{media.description}</p>
+            </div>
+          </motion.div>
         ))}
       </div>
     </div>
