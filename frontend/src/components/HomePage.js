@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import logo from '../logo.svg'; // Import the logo
 
 import TemplateCard from './TemplateCard';
 import templateFlavors from '../data/templateFlavors'; // Import templateFlavors
@@ -44,6 +45,7 @@ const HomePage = () => {
   return (
     <>
       <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
         <h1
           ref={h1Ref} // Attach ref
           onMouseMove={handleMouseMove} // Add mouse move handler

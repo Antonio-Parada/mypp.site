@@ -1,5 +1,31 @@
 .App-header {
   /* Inherits styles from App.css */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.App-logo {
+  height: 100px; /* Adjust as needed */
+  pointer-events: none;
+  margin-bottom: 20px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .dynamic-name {
