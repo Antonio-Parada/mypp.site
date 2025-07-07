@@ -40,9 +40,9 @@ function App() {
             <Route path="/upload" element={<UploadMedia />} />
             <Route path="/login" element={<Login />} /> {/* Add Login route */}
             <Route path="/signup" element={<Signup />} /> {/* Add Signup route */}
-            <Route path="/template/grid" element={<GridTemplate />} />
-            <Route path="/template/carousel" element={<CarouselTemplate />} />
-            <Route path="/template/list" element={<ListTemplate />} />
+            <Route path="/template/grid/:flavorId" element={<GridTemplate />} />
+            <Route path="/template/carousel/:flavorId" element={<CarouselTemplate />} />
+            <Route path="/template/list/:flavorId" element={<ListTemplate />} />
           </Routes>
         </main>
         <footer>
