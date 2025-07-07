@@ -1,6 +1,7 @@
 import React from 'react';
 import { HashRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import './App.css';
+import './components/HomePage.css'; // Import HomePage specific styles
 import HomePage from './components/HomePage';
 import Portfolio from './components/Portfolio';
 import UploadMedia from './components/UploadMedia';
