@@ -13,6 +13,7 @@ const templateFlavors = {
         itemBorderRadius: '10px',
         titleColor: '#333',
         descriptionColor: '#666',
+        thumbnail: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=300&h=200&q=80', // Urban Cityscape
       },
     },
     {
@@ -29,6 +30,7 @@ const templateFlavors = {
         itemBorderRadius: '5px',
         titleColor: '#444',
         descriptionColor: '#777',
+        thumbnail: 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=300&h=200&q=80', // Mountain Landscape
       },
     },
     {
@@ -44,7 +46,7 @@ const templateFlavors = {
         itemBorderRadius: '15px',
         titleColor: '#222',
         descriptionColor: '#555',
-        // Additional config for varied sizes would be implemented in GridTemplate.js logic
+        thumbnail: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=300&h=200&q=80', // Reusing urban cityscape for now
       },
     },
   ],
@@ -61,6 +63,7 @@ const templateFlavors = {
         activeDotColor: '#61dafb',
         itemBg: '#f0f0f0',
         itemShadow: '0 5px 15px rgba(0, 0, 0, 0.1)',
+        thumbnail: 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=300&h=200&q=80', // Mountain Landscape
       },
     },
     {
@@ -75,6 +78,7 @@ const templateFlavors = {
         activeDotColor: '#4fa3d1',
         itemBg: '#fff',
         itemShadow: '0 8px 20px rgba(0, 0, 0, 0.15)',
+        thumbnail: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=300&h=200&q=80', // Urban Cityscape
       },
     },
     {
@@ -89,6 +93,7 @@ const templateFlavors = {
         activeDotColor: '#fff',
         itemBg: 'transparent',
         itemShadow: 'none',
+        thumbnail: 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=300&h=200&q=80', // Reusing mountain landscape
       },
     },
   ],
@@ -105,6 +110,7 @@ const templateFlavors = {
         itemBorderRadius: '8px',
         titleColor: '#333',
         descriptionColor: '#666',
+        thumbnail: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=300&h=200&q=80', // Urban Cityscape
       },
     },
     {
@@ -120,6 +126,7 @@ const templateFlavors = {
         itemBorderRadius: '5px',
         titleColor: '#444',
         descriptionColor: '#777',
+        thumbnail: 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=300&h=200&q=80', // Mountain Landscape
       },
     },
     {
@@ -135,6 +142,7 @@ const templateFlavors = {
         itemBorderRadius: '12px',
         titleColor: '#222',
         descriptionColor: '#555',
+        thumbnail: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=300&h=200&q=80', // Reusing urban cityscape
       },
     },
   ],
