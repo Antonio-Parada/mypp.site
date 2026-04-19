@@ -1,10 +1,10 @@
 :root {
   --pixels-green: #00ff00;
   --pixels-pink: #ff00ff;
-  --pixels-bg: #000;
-  --pixels-surface: #0a0a0a;
-  --pixels-border: #1a1a1a;
-  --pixels-text-muted: #666;
+  --bg: #16171d;
+  --pixels-surface: #1e1f26;
+  --pixels-border: #2a2b33;
+  --pixels-text-muted: #888;
 }
 
 * { box-sizing: border-box; }
@@ -12,7 +12,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: var(--pixels-bg);
+  background-color: var(--bg);
   color: #fff;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   overflow-x: hidden;
@@ -38,14 +38,13 @@ body {
 .mypp-logo span { color: var(--pixels-pink); }
 
 .mypp-links { display: flex; gap: 30px; align-items: center; }
-.mypp-links a { text-decoration: none; color: #888; font-size: 11px; font-weight: 900; }
-.mypp-links a:hover { color: #fff; }
+.mypp-links a, .mypp-links button { text-decoration: none; color: #888; font-size: 11px; font-weight: 900; background: none; border: none; cursor: pointer; }
+.mypp-links a:hover, .mypp-links button:hover { color: #fff; }
 
 .mypp-btn-sm {
-    background: #fff;
-    color: #000;
-    border: none;
-    padding: 8px 16px;
+    background: #fff !important;
+    color: #000 !important;
+    padding: 8px 16px !important;
     font-size: 11px;
     font-weight: 900;
     cursor: pointer;
@@ -57,9 +56,9 @@ body {
 }
 
 .hero-badge {
-    background: #111;
+    background: #1e1f26;
     color: var(--pixels-pink);
-    border: 1px solid #222;
+    border: 1px solid var(--pixels-border);
     padding: 6px 12px;
     border-radius: 20px;
     font-size: 10px;
@@ -95,12 +94,13 @@ body {
     font-size: 14px;
     font-weight: 900;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .mypp-btn-secondary {
     background: transparent;
     color: #fff;
-    border: 1px solid #222;
+    border: 1px solid var(--pixels-border);
     padding: 18px 36px;
     font-size: 14px;
     font-weight: 900;
@@ -113,17 +113,17 @@ body {
     gap: 40px;
     padding: 100px 60px;
     border-top: 1px solid var(--pixels-border);
-    background-color: #050505;
+    background-color: #121318;
 }
 
 .mypp-feature {
     text-align: left;
-    padding: 30px;
+    padding: 40px;
     border: 1px solid var(--pixels-border);
     background-color: var(--pixels-surface);
 }
 
-.mypp-feature h3 { font-size: 18px; margin: 20px 0 10px; font-weight: 900; }
+.mypp-feature h3 { font-size: 18px; margin: 20px 0 10px; font-weight: 900; letter-spacing: 1px; }
 .mypp-feature p { font-size: 14px; color: #666; line-height: 1.6; }
 
 .mypp-footer {
@@ -133,6 +133,8 @@ body {
     justify-content: space-between;
     font-size: 11px;
     color: #444;
+    font-weight: 800;
+    letter-spacing: 1px;
 }
 
 /* --- PORTAL THEME --- */
@@ -176,7 +178,22 @@ body {
   100% { clip: rect(25px, 9999px, 35px, 0); }
 }
 
-.portal-status { font-size: 11px; font-weight: bold; color: var(--pixels-green); }
+.portal-status { 
+    font-size: 11px; 
+    font-weight: bold; 
+    color: var(--pixels-green);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.status-pulse {
+    width: 8px;
+    height: 8px;
+    background-color: var(--pixels-green);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--pixels-green);
+}
 
 .node-grid {
     display: grid;
@@ -203,7 +220,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #050505;
+    background: #121318;
 }
 
 .card-label { display: flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 900; }
